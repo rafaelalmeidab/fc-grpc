@@ -1,41 +1,41 @@
-# gRPC com Go — Full Cycle
+# gRPC with Go — Full Cycle
 
 ![Go](https://img.shields.io/badge/Go-00ADD8?style=flat&logo=go&logoColor=white)
 ![gRPC](https://img.shields.io/badge/gRPC-4285F4?style=flat&logo=googlecloud&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white)
-![Full Cycle](https://img.shields.io/badge/Full%20Cycle-Curso-orange?style=flat)
+![Full Cycle](https://img.shields.io/badge/Full%20Cycle-Course-orange?style=flat)
 
-> Estudos de gRPC em Go — curso da [Full Cycle](https://fullcycle.com.br/), usando Protocol Buffers e o exemplo clássico `helloworld`.
+> gRPC study project in Go — [Full Cycle](https://fullcycle.com.br/) course, using Protocol Buffers and the classic `helloworld` example.
 
-## 🐳 Ambiente de desenvolvimento (Docker)
+## 🐳 Development environment (Docker)
 
-O projeto usa um container de desenvolvimento (Go + `protoc` + plugins já instalados), então **não precisa instalar nada localmente** — só Docker.
+The project uses a development container (Go + `protoc` + plugins already installed), so **there's no need to install anything locally** — just Docker.
 
-### Subindo o container
+### Starting the container
 
 ```bash
 docker-compose up -d
 ```
 
-Isso builda a imagem (a partir do `Dockerfile`) e sobe o container `go-app`, com o código montado como volume (`.:/app`) e a porta `8282` exposta.
+This builds the image (from the `Dockerfile`) and starts the `go-app` container, with the code mounted as a volume (`.:/app`) and port `8282` exposed.
 
-### Acessando o container
+### Accessing the container
 
-Como o container fica apenas em segundo plano (`sleep infinity`), os comandos abaixo (proto, build, run) devem ser executados **dentro dele**:
+Since the container just runs in the background (`sleep infinity`), the commands below (proto, build, run) must be executed **inside it**:
 
 ```bash
 docker exec -it go-app bash
 ```
 
-### Parando o container
+### Stopping the container
 
 ```bash
 docker-compose down
 ```
 
-## 🔧 Gerando o código a partir do `.proto`
+## 🔧 Generating code from the `.proto` file
 
-Dentro do container:
+Inside the container:
 
 ```bash
 protoc --go_out=. --go_opt=module=github.com/rafaelalmeidab/fc-grpc \
@@ -43,17 +43,17 @@ protoc --go_out=. --go_opt=module=github.com/rafaelalmeidab/fc-grpc \
   examples/helloworld/proto/helloworld.proto
 ```
 
-Esse comando lê o `helloworld.proto` e gera os arquivos Go correspondentes (`*.pb.go` e `*_grpc.pb.go`), usados para serializar mensagens e implementar o servidor/cliente gRPC.
+This command reads `helloworld.proto` and generates the corresponding Go files (`*.pb.go` and `*_grpc.pb.go`), used to serialize messages and implement the gRPC server/client.
 
-## 📚 Go Modules — para que serve?
+## 📚 Go Modules — what's it for?
 
-O `go.mod` gerencia as dependências do projeto (parecido com `package.json` no Node ou `composer.json` no PHP).
+`go.mod` manages the project's dependencies (similar to `package.json` in Node or `composer.json` in PHP).
 
 ```bash
 go mod tidy
 ```
 
-Adiciona ao `go.mod`/`go.sum` os pacotes que estão sendo importados no código e remove os que não são mais usados.
+Adds the packages being imported in the code to `go.mod`/`go.sum` and removes the ones that are no longer used.
 
 ## 🏗️ Build
 
@@ -61,17 +61,17 @@ Adiciona ao `go.mod`/`go.sum` os pacotes que estão sendo importados no código 
 go build -o bin/helloworld/server ./helloworld/server
 ```
 
-Gera o binário do servidor em `bin/helloworld/server`.
+Generates the server binary at `bin/helloworld/server`.
 
-## ▶️ Rodando o servidor
+## ▶️ Running the server
 
 ```bash
 ./bin/helloworld/server
 ```
 
-O servidor gRPC sobe e fica no ar, escutando na porta configurada (por padrão exposta em `8282` via `docker-compose.yml`).
+The gRPC server starts and stays up, listening on the configured port (exposed by default on `8282` via `docker-compose.yml`).
 
-## 📂 Estrutura do projeto
+## 📂 Project structure
 
 ```
 .
