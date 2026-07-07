@@ -1,6 +1,11 @@
 # gRPC com Go — Full Cycle
 
-Projeto de estudos do curso de gRPC da Full Cycle, usando Go, Protocol Buffers e o exemplo `helloworld`.
+![Go](https://img.shields.io/badge/Go-00ADD8?style=flat&logo=go&logoColor=white)
+![gRPC](https://img.shields.io/badge/gRPC-4285F4?style=flat&logo=googlecloud&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white)
+![Full Cycle](https://img.shields.io/badge/Full%20Cycle-Curso-orange?style=flat)
+
+> Estudos de gRPC em Go — curso da [Full Cycle](https://fullcycle.com.br/), usando Protocol Buffers e o exemplo clássico `helloworld`.
 
 ## 🐳 Ambiente de desenvolvimento (Docker)
 
